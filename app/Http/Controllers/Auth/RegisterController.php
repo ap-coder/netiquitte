@@ -83,7 +83,7 @@ class RegisterController extends Controller
         if (! request()->has('team')) {
             $team = \App\Models\Team::create([
                 'owner_id' => $user->id,
-                'name'     => $data['email'],
+                'name'     => $data['first_name'].' '.$data['last_name'],
             ]);
 
             $user->update(['team_id' => $team->id]);
