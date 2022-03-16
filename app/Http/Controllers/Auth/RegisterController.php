@@ -114,7 +114,7 @@ class RegisterController extends Controller
         foreach ($admins as $key => $admin) {
             $role = implode('', $admin->roles->pluck('id')->toArray());
 
-            if ($role == 1) {
+            if ($role == 1 && $request->email != $admin->email) {
                 \Mail::to($admin->email)->send(new UserApprovedMail($data));
             }
         }
