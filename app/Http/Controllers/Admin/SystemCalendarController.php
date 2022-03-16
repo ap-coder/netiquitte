@@ -13,7 +13,7 @@ class SystemCalendarController extends Controller
             'field'      => 'name',
             'prefix'     => '',
             'suffix'     => '',
-            'route'      => 'admin.campaigns.edit',
+            'route'      => 'admin.campaigns.show',
         ],
     ];
 
@@ -24,7 +24,7 @@ class SystemCalendarController extends Controller
             'field'      => 'name',
             'prefix'     => '',
             'suffix'     => '',
-            'route'      => 'admin.campaigns.edit',
+            'route'      => 'admin.tasks.show',
         ],
     ];
 
