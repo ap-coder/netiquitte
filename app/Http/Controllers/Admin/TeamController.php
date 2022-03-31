@@ -48,7 +48,7 @@ class TeamController extends Controller
                 return $row->name ? $row->name : '';
             });
             $table->editColumn('owner_name', function ($row) {
-                return $row->owner->name ? $row->owner->name : '';
+                return $row->owner ? $row->owner->first_name.' '.$row->owner->last_name : '';
             });
             $table->rawColumns(['actions', 'placeholder', 'owner_name']);
 

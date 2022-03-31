@@ -96,11 +96,11 @@ class RegisterController extends Controller
     {
         $validator = $this->validator($request->all());
 
-        if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
-        }
+        // if ($validator->fails()) {
+        //     $this->throwValidationException(
+        //         $request, $validator
+        //     );
+        // }
 
         $user = $this->create($request->all());
 
