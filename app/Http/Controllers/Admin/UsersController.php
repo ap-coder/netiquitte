@@ -68,19 +68,18 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
             $table->editColumn('status', function ($row) {
-
-                if ($row->approved==1) {
+                if ($row->approved == 1) {
                     $labels = '<span class="btn btn-xs btn-success">Approved</span>';
                 }elseif ($row->approved==2) {
                     $labels = '<span class="btn btn-xs btn-danger">Declined</span>';
                 }else{
                     $labels = '<span class="btn btn-xs btn-warning">Pending</span>';
                 }
-                return $labels;
 
+                return $labels;
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'roles','status']);
+            $table->rawColumns(['actions', 'placeholder', 'roles', 'status']);
 
             return $table->make(true);
         }
@@ -155,7 +154,7 @@ class UsersController extends Controller
     public function destroy(User $user)
     {
         abort_if(Gate::denies('user_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        
+
         $user->team()->delete();
         $user->delete();
 

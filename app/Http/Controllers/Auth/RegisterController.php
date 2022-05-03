@@ -125,7 +125,6 @@ class RegisterController extends Controller
         ];
         \Mail::to($user->email)->send(new UserApprovedMail($userdata));
 
-
         return redirect()->route('login')->with('message', trans('global.yourAccountNeedsAdminApproval'));
     }
 }
