@@ -119,6 +119,13 @@ class RegisterController extends Controller
             }
         }
 
+        $userdata = [
+            'email_subject'=>'Your registration is pending!',
+            'email_body'=>'<p><strong>Hello '.$user->first_name.'</strong></p> <p>Your registration is pending waiting for approval! <a href="'.route('login').'">Click Here</a></p>',
+        ];
+        \Mail::to($user->email)->send(new UserApprovedMail($userdata));
+
+
         return redirect()->route('login')->with('message', trans('global.yourAccountNeedsAdminApproval'));
     }
 }

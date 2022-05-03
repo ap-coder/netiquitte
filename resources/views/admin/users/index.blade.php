@@ -40,6 +40,9 @@
                         {{ trans('cruds.user.fields.roles') }}
                     </th>
                     <th>
+                        {{ trans('cruds.user.fields.status') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -99,6 +102,7 @@
     { data: 'email', name: 'email' },
     // { data: 'email_verified_at', name: 'email_verified_at' },
     { data: 'roles', name: 'roles.title' },
+    { data: 'status', name: 'status' },
     { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

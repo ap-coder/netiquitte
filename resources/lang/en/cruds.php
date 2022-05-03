@@ -93,6 +93,8 @@ return [
             'affiliates_helper'                   => ' ',
             'approved'                            => 'Approved',
             'approved_helper'                     => ' ',
+            'status'                            => 'Status',
+            'status_helper'                     => ' ',
         ],
     ],
     'team' => [
