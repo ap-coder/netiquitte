@@ -71,6 +71,8 @@ class UsersController extends Controller
 
                 if ($row->approved==1) {
                     $labels = '<span class="btn btn-xs btn-success">Approved</span>';
+                }elseif ($row->approved==2) {
+                    $labels = '<span class="btn btn-xs btn-danger">Declined</span>';
                 }else{
                     $labels = '<span class="btn btn-xs btn-warning">Pending</span>';
                 }

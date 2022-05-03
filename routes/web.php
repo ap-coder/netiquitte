@@ -16,6 +16,7 @@ Route::get('/success', 'UnsubscribeController@success')->name('success');
 Route::get('openEmail', 'UnsubscribeController@openEmail')->name('openEmail');
 Route::get('paymentOpenEmail', 'UnsubscribeController@paymentOpenEmail')->name('paymentOpenEmail');
 Route::get('userApproval/{id?}', 'UnsubscribeController@userApproval')->name('userApproval');
+Route::get('userDeclined/{id?}', 'UnsubscribeController@userDeclined')->name('userDeclined');
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
     Route::get('/', 'HomeController@index')->name('home');

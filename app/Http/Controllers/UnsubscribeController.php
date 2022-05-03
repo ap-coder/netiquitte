@@ -7,6 +7,7 @@ use App\Models\PaymentMailLogs;
 use App\Models\TempEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Mail\UserApproveDeclineMail;
 
 class UnsubscribeController extends Controller
 {
@@ -59,8 +60,32 @@ class UnsubscribeController extends Controller
             $user = User::where('id', $id)->first();
             $user->approved = 1;
             $user->save();
+
+            $userdata = [
+                'email_subject'=>'Your registration is approved!',
+                'email_body'=>'<p><strong>Hello '.$user->first_name.'</strong></p> <p>Your registration is approved please log in at your convenience. <a href="'.route('login').'">Click Here</a></p>',
+            ];
+            \Mail::to($user->email)->send(new UserApproveDeclineMail($userdata));
+
         }
 
         return redirect()->route('admin.home')->with('success', 'User successfully approved!');
+    }
+
+    public function userDeclined($id = 0)
+    {
+        if ($id != 0) {
+            $user = User::where('id', $id)->first();
+            $user->approved = 2;
+            $user->save();
+
+            $userdata = [
+                'email_subject'=>'Your registration was not approved!',
+                'email_body'=>'<p><strong>Hello '.$user->first_name.'</strong></p> <p>Your registration was not approved. Please contact us for further details.',
+            ];
+            \Mail::to($user->email)->send(new UserApproveDeclineMail($userdata));
+        }
+
+        return redirect()->route('admin.home')->with('success', 'User successfully declined!');
     }
 }

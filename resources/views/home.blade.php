@@ -20,15 +20,14 @@
   @if ($users->count()>0)
     @foreach ($users as $user)
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      Hello Admin, {{ $user->first_name }} {{ $user->last_name }} waiting for approval! <a href="{{ route("userApproval",$user->id) }}">Click Here</a>
+      Hello Admin, {{ $user->first_name }} {{ $user->last_name }} waiting for approval! <a class="userApproval" href="{{ route("userApproval",$user->id) }}">Approved</a> Or <a class="userDeclined" href="{{ route("userDeclined",$user->id) }}">Declined</a>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true" class="fa fa-times"></span>
       </button>
   </div>
     @endforeach
   @endif
-        
-
+  
 <div class="content">
     <div class="row">
         <div class="col-lg-12">
@@ -97,6 +96,27 @@
 {!! $chart7->renderJs() !!}
 
 <script>
+
+
+
+
+$('.userApproval').click(function(){
+    if(confirm("Are you sure you want to approve this user?")){
+      return true;
+    }
+    else{
+        return false;
+    }
+});
+
+$('.userDeclined').click(function(){
+    if(confirm("Are you sure you want to decline this user?")){
+      return true;
+    }
+    else{
+        return false;
+    }
+});
 
 $(document).ready(function () {
             // page is now ready, initialize the calendar...

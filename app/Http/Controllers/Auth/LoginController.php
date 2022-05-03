@@ -39,7 +39,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if (! $user->approved) {
+        if ($user->approved==0 || $user->approved==2) {
             auth()->logout();
 
             return redirect()->route('login')->with('message', trans('global.yourAccountNeedsAdminApproval'));

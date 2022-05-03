@@ -109,7 +109,7 @@ class RegisterController extends Controller
             'email_body'=>'<p><strong>Hello Admin</strong></p> <p>There is a pending user waiting for approval! <a href="'.route('userApproval', $user->id).'">Click Here</a></p>',
         ];
 
-        $admins = User::get();
+        $admins = User::where('approved',1)->get();
 
         foreach ($admins as $key => $admin) {
             $role = implode('', $admin->roles->pluck('id')->toArray());
