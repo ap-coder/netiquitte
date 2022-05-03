@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserApproveDeclineMail;
 use App\Models\Account;
 use App\Models\PaymentMailLogs;
 use App\Models\TempEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Mail\UserApproveDeclineMail;
 
 class UnsubscribeController extends Controller
 {
@@ -66,7 +66,6 @@ class UnsubscribeController extends Controller
                 'email_body'=>'<p><strong>Hello '.$user->first_name.'</strong></p> <p>Your registration is approved please log in at your convenience. <a href="'.route('login').'">Click Here</a></p>',
             ];
             \Mail::to($user->email)->send(new UserApproveDeclineMail($userdata));
-
         }
 
         return redirect()->route('admin.home')->with('success', 'User successfully approved!');
