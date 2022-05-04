@@ -69,18 +69,18 @@ class UsersController extends Controller
             });
             $table->editColumn('status', function ($row) {
                 if ($row->approved == 1) {
-                    $labels = '<input class="chkToggle" checked type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'" data-size="mini">' ;
+                    $labels = '<input class="chkToggle" checked type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'" data-size="mini">';
                 } else {
                     $labels = '<input class="chkToggle" type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'" data-size="mini"> &nbsp; &nbsp; 
                     
-                    <a href="'.route("userDeclined", $row->id).'" class="userDeclined  btn btn-dark btn-xs"><span class="fas fa-times"></span></a>
+                    <a href="'.route('userDeclined', $row->id).'" class="userDeclined  btn btn-dark btn-xs"><span class="fas fa-times"></span></a>
                 ';
                 }
-            //     <form action="'.route("admin.users.destroy", $row->id).'" method="POST" onsubmit="return confirm('.trans('global.areYouSure').');" style="display: inline-block;">
-            //     <input type="hidden" name="_method" value="DELETE">
-            //     <input type="hidden" name="_token" value="'.csrf_token().'">
-            //     <input type="submit"  value="X">
-            // </form>
+                //     <form action="'.route("admin.users.destroy", $row->id).'" method="POST" onsubmit="return confirm('.trans('global.areYouSure').');" style="display: inline-block;">
+                //     <input type="hidden" name="_method" value="DELETE">
+                //     <input type="hidden" name="_token" value="'.csrf_token().'">
+                //     <input type="submit"  value="X">
+                // </form>
                 // <a href=""><span class="fas fa-times"></span></a>
                 return $labels;
             });
