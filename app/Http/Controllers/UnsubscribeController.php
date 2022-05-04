@@ -58,7 +58,11 @@ class UnsubscribeController extends Controller
     {
         if ($id != 0) {
             $user = User::where('id', $id)->first();
-            $user->approved = 1;
+            if ($user->approved == 1) {
+                $user->approved = 0;
+            } else {
+                $user->approved = 1;
+            }            
             $user->save();
 
             $userdata = [
@@ -69,21 +73,22 @@ class UnsubscribeController extends Controller
 
         }
 
-        return redirect()->route('admin.home')->with('success', 'User successfully approved!');
+        return redirect()->back()->with('success', 'Successfully changed user status!');
     }
 
     public function userDeclined($id = 0)
     {
         if ($id != 0) {
             $user = User::where('id', $id)->first();
-            $user->approved = 2;
-            $user->save();
 
             $userdata = [
                 'email_subject'=>'Your registration was not approved!',
                 'email_body'=>'<p><strong>Hello '.$user->first_name.'</strong></p> <p>Your registration was not approved. Please contact us for further details.',
             ];
             \Mail::to($user->email)->send(new UserApproveDeclineMail($userdata));
+
+            $user->team()->delete();
+            $user->delete();
         }
 
         return redirect()->route('admin.home')->with('success', 'User successfully declined!');

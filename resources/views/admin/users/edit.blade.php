@@ -154,10 +154,19 @@
                 <span class="help-block">{{ trans('cruds.user.fields.team_helper') }}</span>
             </div>
             <div class="form-group">
-                <button class="btn btn-danger" type="submit">
+                <button class="btn btn-info" type="submit">
                     {{ trans('global.save') }}
                 </button>
+               
             </div>
+        </form>
+
+        <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="position: absolute;
+            bottom: 36px;
+            left: 130px;">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            <input type="submit" class="btn btn-danger" value="{{ trans('global.delete') }}">
         </form>
     </div>
 </div>

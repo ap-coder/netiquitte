@@ -9,6 +9,19 @@
         </div>
     </div>
 @endcan
+
+@if(Session::has('success'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ Session::get('success') }}
+      @php
+          Session::forget('success');
+      @endphp
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true" class="fa fa-times"></span>
+      </button>
+  </div>
+  @endif
+  
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
@@ -108,6 +121,9 @@
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
     pageLength: 100,
+    "fnDrawCallback": function() {
+            $('.chkToggle').bootstrapToggle();
+        },
   };
 
   let table = $('.datatable-User').DataTable(dtOverrideGlobals);
@@ -115,7 +131,22 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
+
   
+});
+
+$(document).on('change', '.chkToggle', function(event) {
+
+    var $this = $(this);
+    var state = $this.prop('checked');
+    var userID = $this.attr('userID');
+
+    if(confirm("Are you sure you want to change this user status?")){
+        window.location.href = "{{ url('') }}/userApproval/"+userID;
+    }
+    else{
+        $this.prop('checked', !state).bootstrapToggle('destroy').bootstrapToggle();
+    }
 });
 
 </script>

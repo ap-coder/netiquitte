@@ -153,6 +153,14 @@
                 <a class="btn btn-default" href="{{ route('admin.users.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
+
+                <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="position: absolute;
+                    bottom: 36px;
+                    left: 130px;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <input type="submit" class="btn btn-danger" value="{{ trans('global.delete') }}">
+                </form>
             </div>
         </div>
     </div>

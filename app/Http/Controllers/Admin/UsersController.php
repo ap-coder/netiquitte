@@ -68,13 +68,13 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
             $table->editColumn('status', function ($row) {
+
                 if ($row->approved == 1) {
-                    $labels = '<span class="btn btn-xs btn-success">Approved</span>';
-                }elseif ($row->approved==2) {
-                    $labels = '<span class="btn btn-xs btn-danger">Declined</span>';
+                    $labels = '<input class="chkToggle" checked type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'">';
                 }else{
-                    $labels = '<span class="btn btn-xs btn-warning">Pending</span>';
+                    $labels = '<input class="chkToggle" type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'">';
                 }
+                
 
                 return $labels;
             });
@@ -158,7 +158,7 @@ class UsersController extends Controller
         $user->team()->delete();
         $user->delete();
 
-        return back();
+        return redirect()->route('admin.users.index')->with('success', 'Successfully deleted user!');
     }
 
     public function massDestroy(MassDestroyUserRequest $request)
