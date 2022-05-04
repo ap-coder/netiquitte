@@ -7,6 +7,11 @@
     </div>
 
     <div class="card-body">
+        <div class="form-group">
+            <a class="btn btn-default" href="{{ route('admin.offers.index') }}">
+                {{ trans('global.back_to_list') }}
+            </a>
+        </div>
         <form method="POST" action="{{ route("admin.offers.update", [$offer->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf

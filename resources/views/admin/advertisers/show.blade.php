@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.advertisers.index') }}">
+                <a class="btn btn-default" href="{{ url('') }}/admin/advertiser/active">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>
@@ -36,7 +36,7 @@
                             {{ trans('cruds.advertiser.fields.account_status') }}
                         </th>
                         <td>
-                            {{ App\Models\Advertiser::ACCOUNT_STATUS_SELECT[$advertiser->account_status] ?? '' }}
+                            {{ $advertiser->account_status }}
                         </td>
                     </tr>
                   {{--   <tr>
@@ -59,14 +59,14 @@
                             @endif
                         </td>
                     </tr> --}}
-                    {{-- <tr>
+                    <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.account_manager_name') }}
                         </th>
                         <td>
                             {{ $advertiser->account_manager_name }}
                         </td>
-                    </tr> --}}
+                    </tr>
                     <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.account_executive_name') }}
@@ -107,14 +107,14 @@
                             {{ $advertiser->global_tracking_domain_url }}
                         </td>
                     </tr> --}}
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.published') }}
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $advertiser->published ? 'checked' : '' }}>
                         </td>
-                    </tr>
+                    </tr> --}}
                     {{-- <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.today_revenue') }}
@@ -270,7 +270,7 @@
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.advertisers.index') }}">
+                <a class="btn btn-default" href="{{ url('') }}/admin/advertiser/active">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

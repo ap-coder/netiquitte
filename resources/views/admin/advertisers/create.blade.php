@@ -7,6 +7,11 @@
     </div>
 
     <div class="card-body">
+        <div class="form-group">
+            <a class="btn btn-default" href="{{ url('') }}/admin/advertiser/active">
+                {{ trans('global.back_to_list') }}
+            </a>
+        </div>
         <form method="POST" action="{{ route("admin.advertisers.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -95,7 +100,7 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.advertiser.fields.global_tracking_domain_url_helper') }}</span>
             </div> --}}
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="published" value="0">
                     <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ old('published', 0) == 1 || old('published') === null ? 'checked' : '' }}>
@@ -105,7 +110,7 @@
                     <span class="text-danger">{{ $errors->first('published') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.advertiser.fields.published_helper') }}</span>
-            </div>
+            </div> --}}
            {{--  <div class="form-group">
                 <label for="today_revenue">{{ trans('cruds.advertiser.fields.today_revenue') }}</label>
                 <input class="form-control {{ $errors->has('today_revenue') ? 'is-invalid' : '' }}" type="number" name="today_revenue" id="today_revenue" value="{{ old('today_revenue', '0.00') }}" step="0.01">

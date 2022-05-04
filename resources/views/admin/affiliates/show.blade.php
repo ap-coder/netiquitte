@@ -28,7 +28,7 @@
                             {{ trans('cruds.affiliate.fields.account_status') }}
                         </th>
                         <td>
-                            {{ $affiliate->account_status->name ?? '' }}
+                            {{ $affiliate->account_status ?? '' }}
                         </td>
                     </tr>
                     {{-- <tr>
@@ -71,14 +71,7 @@
                             @endif
                         </td>
                     </tr> --}}
-                   {{--  <tr>
-                        <th>
-                            {{ trans('cruds.affiliate.fields.account_manager_name') }}
-                        </th>
-                        <td>
-                            {{ $affiliate->account_manager_name }}
-                        </td>
-                    </tr> --}}
+                    
                     <tr>
                         <th>
                             {{ trans('cruds.affiliate.fields.account_executive_name') }}
@@ -151,12 +144,20 @@
                             {{ $affiliate->account_executiveid }}
                         </td>
                     </tr> --}}
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.affiliate.fields.account_managerid') }}
                         </th>
                         <td>
                             {{ $affiliate->account_managerid }}
+                        </td>
+                    </tr> --}}
+                    <tr>
+                        <th>
+                            {{ trans('cruds.affiliate.fields.account_manager_name') }}
+                        </th>
+                        <td>
+                            {{ $affiliate->account_manager_name }}
                         </td>
                     </tr>
                    {{--  <tr>

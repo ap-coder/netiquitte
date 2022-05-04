@@ -7,10 +7,15 @@
     </div>
 
     <div class="card-body">
+        <div class="form-group">
+            <a class="btn btn-default" href="{{ url('') }}/admin/advertiser/active">
+                {{ trans('global.back_to_list') }}
+            </a>
+        </div>
         <form method="POST" action="{{ route("admin.advertisers.update", [$advertiser->id]) }}" enctype="multipart/form-data">
             @method('PUT')
             @csrf
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <div class="form-check {{ $errors->has('published') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="published" value="0">
                     <input class="form-check-input" type="checkbox" name="published" id="published" value="1" {{ $advertiser->published || old('published', 0) === 1 ? 'checked' : '' }}>
@@ -20,7 +25,7 @@
                     <span class="text-danger">{{ $errors->first('published') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.advertiser.fields.published_helper') }}</span>
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.advertiser.fields.name') }}</label>
@@ -34,9 +39,10 @@
                 <label>{{ trans('cruds.advertiser.fields.account_status') }}</label>
                 <select class="form-control {{ $errors->has('account_status') ? 'is-invalid' : '' }}" name="account_status" id="account_status">
                     <option value disabled {{ old('account_status', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(App\Models\Advertiser::ACCOUNT_STATUS_SELECT as $key => $label)
-                        <option value="{{ $key }}" {{ old('account_status', $advertiser->account_status) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
-                    @endforeach
+                    <option value="active" {{ (old('account_status') ? old('account_status') : $advertiser->account_status ?? '') == "active" ? 'selected' : '' }}>Active</option>
+                        <option value="inactive" {{ (old('account_status') ? old('account_status') : $advertiser->account_status ?? '') == "inactive" ? 'selected' : '' }}>Inactive</option>
+                        <option value="suspended" {{ (old('account_status') ? old('account_status') : $advertiser->account_status ?? '') == "suspended" ? 'selected' : '' }}>Suspended</option>
+                        <option value="pending" {{ (old('account_status') ? old('account_status') : $advertiser->account_status ?? '') == "pending" ? 'selected' : '' }}>Pending</option>
                 </select>
                 @if($errors->has('account_status'))
                     <span class="text-danger">{{ $errors->first('account_status') }}</span>
