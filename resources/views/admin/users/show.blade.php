@@ -20,7 +20,10 @@
                             {{ trans('cruds.user.fields.approved') }}
                         </th>
                         <td>
-                            <input type="checkbox" disabled="disabled" {{ $user->approved ? 'checked' : '' }}>
+                            {{-- <input type="checkbox" disabled="disabled" {{ $user->approved ? 'checked' : '' }}> --}}
+
+                            <input type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" value="1" name="approved" id="approved" {{ $user->approved ? 'checked' : '' }} disabled="disabled">
+
                         </td>
                     </tr>
                     <tr>

@@ -14,8 +14,9 @@
             <div class="form-group">
                 <div class="form-check {{ $errors->has('approved') ? 'is-invalid' : '' }}">
                     <input type="hidden" name="approved" value="0">
-                    <input class="form-check-input" type="checkbox" name="approved" id="approved" value="1" {{ $user->approved === 1 || old('approved', 0) === 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="approved">{{ trans('cruds.user.fields.approved') }}</label>
+                    {{-- <input class="form-check-input" type="checkbox" name="approved" id="approved" value="1" {{ $user->approved === 1 || old('approved', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="approved">{{ trans('cruds.user.fields.approved') }}</label> --}}
+                    <input type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" value="1" name="approved" id="approved" {{ $user->approved === 1 || old('approved', 0) === 1 ? 'checked' : '' }}>
                 </div>
                 @if($errors->has('approved'))
                     <span class="text-danger">{{ $errors->first('approved') }}</span>
