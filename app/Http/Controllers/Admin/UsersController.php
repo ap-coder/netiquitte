@@ -62,7 +62,7 @@ class UsersController extends Controller
                 $labels = [];
 
                 foreach ($row->roles as $role) {
-                    $labels[] = sprintf('<span class="btn btn-outline-primary">%s</span>', $role->title);
+                    $labels[] = sprintf('<span class="btn btn-outline-primary btn-xs">%s</span>', $role->title);
                 }
 
                 return implode(' ', $labels);
