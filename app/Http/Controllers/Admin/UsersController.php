@@ -68,13 +68,11 @@ class UsersController extends Controller
                 return implode(' ', $labels);
             });
             $table->editColumn('status', function ($row) {
-
                 if ($row->approved == 1) {
                     $labels = '<input class="chkToggle" checked type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'">';
-                }else{
+                } else {
                     $labels = '<input class="chkToggle" type="checkbox" data-toggle="toggle" data-on="Approved" data-off="Pending" data-onstyle="success" data-offstyle="warning" userID="'.$row->id.'">';
                 }
-                
 
                 return $labels;
             });

@@ -62,7 +62,7 @@ class UnsubscribeController extends Controller
                 $user->approved = 0;
             } else {
                 $user->approved = 1;
-            }            
+            }
             $user->save();
 
             $userdata = [
