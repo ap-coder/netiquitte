@@ -21,7 +21,7 @@
       </button>
   </div>
   @endif
-  
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.user.title_singular') }} {{ trans('global.list') }}
@@ -68,6 +68,19 @@
 @section('scripts')
 @parent
 <script>
+
+
+
+$(document).on('click', '.userDeclined', function(event) {
+
+if(confirm("Are you sure you want to delete this user?")){
+    return true;
+}
+else{
+    return false;
+}
+});
+
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 @can('user_delete')

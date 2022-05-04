@@ -90,6 +90,6 @@ class UnsubscribeController extends Controller
             $user->delete();
         }
 
-        return redirect()->route('admin.home')->with('success', 'User successfully declined!');
+        return redirect()->back()->with('success', 'User successfully declined!');
     }
 }
