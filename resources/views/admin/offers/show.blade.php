@@ -44,7 +44,7 @@
                             {{ trans('cruds.offer.fields.source') }}
                         </th>
                         <td>
-                            {{ App\Models\Offer::SOURCE_SELECT[$offer->source] ?? '' }}
+                            {{ $offer->network_advertiser_name }}
                         </td>
                     </tr>
                     <tr>
@@ -71,14 +71,14 @@
                             {{ App\Models\Offer::OFFER_STATUS_SELECT[$offer->offer_status] ?? '' }}
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.offer.fields.margin') }}
                         </th>
                         <td>
                             {{ $offer->margin }}
                         </td>
-                    </tr>
+                    </tr> --}}
                 </tbody>
             </table>
             <div class="form-group">

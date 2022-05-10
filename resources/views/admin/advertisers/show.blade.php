@@ -67,14 +67,14 @@
                             {{ $advertiser->account_manager_name }}
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.account_executive_name') }}
                         </th>
                         <td>
                             {{ $advertiser->account_executive_name }}
                         </td>
-                    </tr>
+                    </tr> --}}
                     {{-- <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.balance') }}
@@ -171,14 +171,14 @@
                             {{ $advertiser->internal_notes }}
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.is_contact_address_enabled') }}
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $advertiser->is_contact_address_enabled ? 'checked' : '' }}>
                         </td>
-                    </tr>
+                    </tr> --}}
                     {{-- <tr>
                         <th>
                             {{ trans('cruds.advertiser.fields.sales_managerid') }}

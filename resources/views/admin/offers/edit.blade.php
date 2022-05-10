@@ -33,10 +33,10 @@
             </div>
             <div class="form-group">
                 <label>{{ trans('cruds.offer.fields.source') }}</label>
-                <select class="form-control {{ $errors->has('source') ? 'is-invalid' : '' }}" name="source" id="source">
+                <select class="form-control select2 {{ $errors->has('source') ? 'is-invalid' : '' }}" name="network_advertiser_name" id="source">
                     <option value disabled {{ old('source', null) === null ? 'selected' : '' }}>{{ trans('global.pleaseSelect') }}</option>
-                    @foreach(App\Models\Offer::SOURCE_SELECT as $key => $label)
-                        <option value="{{ $key }}" {{ old('source', $offer->source) === (string) $key ? 'selected' : '' }}>{{ $label }}</option>
+                    @foreach($advertisers as $key => $label)
+                        <option value="{{ $label }}" {{ old('source', $offer->network_advertiser_name) === (string) $label ? 'selected' : '' }}>{{ $label }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('source'))
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
                 <label for="payout">{{ trans('cruds.offer.fields.payout') }}</label>
-                <input class="form-control {{ $errors->has('payout') ? 'is-invalid' : '' }}" type="number" name="payout" id="payout" value="{{ old('payout', $offer->payout) }}" step="0.01">
+                <input class="form-control {{ $errors->has('payout') ? 'is-invalid' : '' }}" type="text" name="payout" id="payout" value="{{ old('payout', $offer->payout) }}">
                 @if($errors->has('payout'))
                     <span class="text-danger">{{ $errors->first('payout') }}</span>
                 @endif
@@ -54,7 +54,7 @@
             </div>
             <div class="form-group">
                 <label for="revenue">{{ trans('cruds.offer.fields.revenue') }}</label>
-                <input class="form-control {{ $errors->has('revenue') ? 'is-invalid' : '' }}" type="number" name="revenue" id="revenue" value="{{ old('revenue', $offer->revenue) }}" step="0.01">
+                <input class="form-control {{ $errors->has('revenue') ? 'is-invalid' : '' }}" type="text" name="revenue" id="revenue" value="{{ old('revenue', $offer->revenue) }}">
                 @if($errors->has('revenue'))
                     <span class="text-danger">{{ $errors->first('revenue') }}</span>
                 @endif
@@ -73,14 +73,14 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.offer.fields.offer_status_helper') }}</span>
             </div>
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <label for="margin">{{ trans('cruds.offer.fields.margin') }}</label>
                 <input class="form-control {{ $errors->has('margin') ? 'is-invalid' : '' }}" type="number" name="margin" id="margin" value="{{ old('margin', $offer->margin) }}" step="0.01">
                 @if($errors->has('margin'))
                     <span class="text-danger">{{ $errors->first('margin') }}</span>
                 @endif
                 <span class="help-block">{{ trans('cruds.offer.fields.margin_helper') }}</span>
-            </div>
+            </div> --}}
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

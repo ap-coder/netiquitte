@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyOfferRequest;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
 use App\Models\Affiliate;
+use App\Models\Advertiser;
 use App\Models\Offer;
 use Gate;
 use Illuminate\Http\Request;
@@ -52,7 +53,7 @@ class OfferController extends Controller
                 return $row->name ? $row->name : '';
             });
             $table->editColumn('source', function ($row) {
-                return $row->source ? $row->source : '';
+                return $row->network_advertiser_name ? $row->network_advertiser_name : '';
             });
             $table->editColumn('payout', function ($row) {
                 return $row->payout ? $row->payout : '';
@@ -90,8 +91,9 @@ class OfferController extends Controller
         abort_if(Gate::denies('offer_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $affiliates = Affiliate::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $advertisers = Advertiser::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.offers.create', compact('affiliates'));
+        return view('admin.offers.create', compact('affiliates','advertisers'));
     }
 
     public function store(StoreOfferRequest $request)
@@ -106,10 +108,11 @@ class OfferController extends Controller
         abort_if(Gate::denies('offer_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $affiliates = Affiliate::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $advertisers = Advertiser::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $offer->load('affiliate');
 
-        return view('admin.offers.edit', compact('affiliates', 'offer'));
+        return view('admin.offers.edit', compact('affiliates', 'offer','advertisers'));
     }
 
     public function update(UpdateOfferRequest $request, Offer $offer)

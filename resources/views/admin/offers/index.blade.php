@@ -23,11 +23,11 @@
                     </th>
                     {{-- <th> {{ trans('cruds.offer.fields.id') }} </th>  --}}
                     <th> {{ trans('cruds.offer.fields.name') }} </th> 
-                    {{-- <th> {{ trans('cruds.offer.fields.source') }} </th>  --}}
+                    <th> {{ trans('cruds.offer.fields.source') }} </th> 
                     <th> {{ trans('cruds.offer.fields.payout') }} </th> 
                     <th> {{ trans('cruds.offer.fields.revenue') }} </th> 
                     <th> {{ trans('cruds.offer.fields.offer_status') }} </th> 
-                    <th> {{ trans('cruds.offer.fields.margin') }} </th> 
+                    {{-- <th> {{ trans('cruds.offer.fields.margin') }} </th>  --}}
                     {{--  <th> {{ trans('cruds.offer.fields.affiliate') }} </th> 
                     <th> {{ trans('cruds.offer.fields.today_clicks') }} </th> 
                     <th> {{ trans('cruds.offer.fields.payout_amount') }} </th>   --}}
@@ -117,11 +117,11 @@
       { data: 'placeholder', name: 'placeholder' },
 // { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
-// { data: 'source', name: 'source' },
+{ data: 'source', name: 'source' },
 { data: 'payout', name: 'payout' },
 { data: 'revenue', name: 'revenue' },
 { data: 'offer_status', name: 'offer_status' },
-{ data: 'margin', name: 'margin' },
+// { data: 'margin', name: 'margin' },
 { data: 'actions', name: 'actions' }
     ],
     orderCellsTop: true,
