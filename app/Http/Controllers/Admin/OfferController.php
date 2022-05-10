@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyOfferRequest;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
-use App\Models\Affiliate;
 use App\Models\Advertiser;
+use App\Models\Affiliate;
 use App\Models\Offer;
 use Gate;
 use Illuminate\Http\Request;
@@ -93,7 +93,7 @@ class OfferController extends Controller
         $affiliates = Affiliate::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
         $advertisers = Advertiser::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.offers.create', compact('affiliates','advertisers'));
+        return view('admin.offers.create', compact('affiliates', 'advertisers'));
     }
 
     public function store(StoreOfferRequest $request)
@@ -112,7 +112,7 @@ class OfferController extends Controller
 
         $offer->load('affiliate');
 
-        return view('admin.offers.edit', compact('affiliates', 'offer','advertisers'));
+        return view('admin.offers.edit', compact('affiliates', 'offer', 'advertisers'));
     }
 
     public function update(UpdateOfferRequest $request, Offer $offer)
