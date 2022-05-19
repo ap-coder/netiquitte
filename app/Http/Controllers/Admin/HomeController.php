@@ -351,6 +351,36 @@ class HomeController extends Controller
             $settings9['fields'] = [];
         }
 
+        $settingsTask = [
+            'chart_title'           => 'Open Tasks',
+            'chart_type'            => 'latest_entries',
+            'report_type'           => 'group_by_date',
+            'model'                 => 'App\Models\Task',
+            'group_by_field'        => 'created_at',
+            'group_by_period'       => 'day',
+            'aggregate_function'    => 'count',
+            'filter_field'          => 'created_at',
+            'group_by_field_format' => 'm/d/Y H:i:s',
+            'column_class'          => 'col-md-12',
+            'entries_number'        => '10',
+            'fields'                => [
+                'name'       => '',
+                'created_at' => '',
+            ],
+            'translation_key' => 'campaign',
+        ];
+
+        $settingsTask['data'] = [];
+        if (class_exists($settingsTask['model'])) {
+            $settingsTask['data'] = $settingsTask['model']::where('status_id','!=',3)->latest()
+                ->take($settingsTask['entries_number'])
+                ->get();
+        }
+
+        if (! array_key_exists('fields', $settingsTask)) {
+            $settingsTask['fields'] = [];
+        }
+
         $settings10 = [
             'chart_title'           => 'Sent Payments',
             'chart_type'            => 'latest_entries',
@@ -385,7 +415,7 @@ class HomeController extends Controller
         $users = User::where('approved', 0)->get();
 
         return view('home', compact('chart5', 'chart6', 'chart7', 'settings1', 'settings2', 'settings3', 'settings4',
-            'events', 'settings_sent_emails', 'settings9', 'settings10', 'users'));
+            'events', 'settings_sent_emails', 'settings9', 'settings10', 'users','settingsTask'));
 
         // ->with('year',json_encode($year,JSON_NUMERIC_CHECK))
             // ->with('user',json_encode($user,JSON_NUMERIC_CHECK));

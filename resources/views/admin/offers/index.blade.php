@@ -21,7 +21,7 @@
                     <th width="10">
 
                     </th>
-                    {{-- <th> {{ trans('cruds.offer.fields.id') }} </th>  --}}
+                    <th> {{ trans('cruds.offer.fields.id') }} </th> 
                     <th> {{ trans('cruds.offer.fields.name') }} </th> 
                     <th> {{ trans('cruds.offer.fields.source') }} </th> 
                     <th> {{ trans('cruds.offer.fields.payout') }} </th> 
@@ -115,7 +115,7 @@
     ajax: "{{ $url }}",
     columns: [
       { data: 'placeholder', name: 'placeholder' },
-// { data: 'id', name: 'id' },
+{ data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'source', name: 'source' },
 { data: 'payout', name: 'payout' },
