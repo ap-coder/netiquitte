@@ -233,6 +233,22 @@ class EverflowApiController extends Controller
 
                 $singleOffer = $response2->object();
 
+                if($row['revenue_amount']==0 && $row['revenue_percentage']==0){
+                    $revenue_amount = 0.00;
+                }else if($row['revenue_amount']==0 && $row['revenue_percentage']>0){
+                    $revenue_amount = $row['revenue_percentage'];
+                }else{
+                    $revenue_amount = $row['revenue_amount'];
+                }
+
+                if($row['payout_amount']==0 && $row['payout_percentage']==0){
+                    $payout_amount = 0.00;
+                }else if($row['payout_amount']==0 && $row['payout_percentage']>0){
+                    $payout_amount = $row['payout_percentage'];
+                }else{
+                    $payout_amount = $row['payout_amount'];
+                }
+
                 $offer = Offer::updateOrCreate(
                     ['network_offer' => $row['network_offer_id']],
                     [
@@ -253,8 +269,8 @@ class EverflowApiController extends Controller
                         'destination_url'               => $row['destination_url'],
                         'today_clicks'                  => $row['today_clicks'],
                         'optimized_thumbnail_url'       => $row['optimized_thumbnail_url'],
-                        'revenue_amount'                => $row['revenue_amount'],
-                        'payout_amount'                 => $row['payout_amount'],
+                        'revenue_amount'                => $revenue_amount,
+                        'payout_amount'                 => $payout_amount,
                         'today_revenue_amount'          => $row['today_revenue_amount'],
                         'today_payout_amount'           => $row['today_payout_amount'],
                         'payout_type'                   => $row['payout_type'],
@@ -262,7 +278,7 @@ class EverflowApiController extends Controller
                         'preview_url'                  	=> $singleOffer->preview_url,
                         'description'                  	=> $singleOffer->html_description,
                         'countries'                  	=> $Countries,
-                        'source'                  	    => 'Everflow',
+                        'source'                  	    => $row['network_advertiser_name'],
                     ]
                 );
 

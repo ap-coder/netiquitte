@@ -118,8 +118,8 @@
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'source', name: 'source' },
-{ data: 'payout', name: 'payout' },
-{ data: 'revenue', name: 'revenue' },
+{ data: 'payout_amount', name: 'payout_amount' },
+{ data: 'revenue_amount', name: 'revenue_amount' },
 { data: 'offer_status', name: 'offer_status' },
 // { data: 'margin', name: 'margin' },
 { data: 'actions', name: 'actions' }

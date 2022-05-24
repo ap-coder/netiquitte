@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyOfferRequest;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
-use App\Models\Advertiser;
 use App\Models\Affiliate;
+use App\Models\Advertiser;
 use App\Models\Offer;
 use Gate;
 use Illuminate\Http\Request;
@@ -53,12 +53,12 @@ class OfferController extends Controller
                 return $row->name ? $row->name : '';
             });
             $table->editColumn('source', function ($row) {
-                return $row->network_advertiser_name ? $row->network_advertiser_name : '';
+                return $row->source ? $row->source : '';
             });
-            $table->editColumn('payout', function ($row) {
+            $table->editColumn('payout_amount', function ($row) {
                 return $row->payout ? $row->payout : '';
             });
-            $table->editColumn('revenue', function ($row) {
+            $table->editColumn('revenue_amount', function ($row) {
                 return $row->revenue ? $row->revenue : '';
             });
             $table->editColumn('offer_status', function ($row) {
@@ -74,11 +74,11 @@ class OfferController extends Controller
             $table->editColumn('today_clicks', function ($row) {
                 return $row->today_clicks ? $row->today_clicks : '';
             });
-            $table->editColumn('payout_amount', function ($row) {
-                return $row->payout_amount ? $row->payout_amount : '';
-            });
+            // $table->editColumn('payout_amount', function ($row) {
+            //     return $row->payout_amount ? $row->payout_amount : '';
+            // });
 
-            $table->rawColumns(['actions', 'placeholder', 'affiliate']);
+            $table->rawColumns(['actions', 'placeholder', 'affiliate','payout_amount','revenue_amount']);
 
             return $table->make(true);
         }
@@ -93,7 +93,7 @@ class OfferController extends Controller
         $affiliates = Affiliate::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
         $advertisers = Advertiser::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.offers.create', compact('affiliates', 'advertisers'));
+        return view('admin.offers.create', compact('affiliates','advertisers'));
     }
 
     public function store(StoreOfferRequest $request)
@@ -112,7 +112,7 @@ class OfferController extends Controller
 
         $offer->load('affiliate');
 
-        return view('admin.offers.edit', compact('affiliates', 'offer', 'advertisers'));
+        return view('admin.offers.edit', compact('affiliates', 'offer','advertisers'));
     }
 
     public function update(UpdateOfferRequest $request, Offer $offer)
