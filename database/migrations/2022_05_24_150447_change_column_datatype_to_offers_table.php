@@ -14,8 +14,8 @@ class ChangeColumnDatatypeToOffersTable extends Migration
     public function up()
     {
         Schema::table('offers', function (Blueprint $table) {
-            $table->decimal('payout_amount', 15,2)->change();
-            $table->decimal('revenue_amount', 15,2)->change();
+            $table->decimal('payout_amount', 15, 2)->change();
+            $table->decimal('revenue_amount', 15, 2)->change();
         });
     }
 }
