@@ -296,11 +296,13 @@ class BalancesController extends Controller
 
     public function SaveNotes(Request $request)
     {
-        $Note = $request->notes;
+        $Year = $request->year;
+        $Month = $request->month;
         $AccountID = $request->AccountID;
-        $Note = addslashes($Note);
+        $Note = $request->notes;
 
-        $balance = Balance::where('affiliate_id', $AccountID)->first();
+        $balance = Balance::where('accounting_year', $Year)->where('accounting_month', $Month)->where('affiliate_id', $AccountID)->first();
+
         $balance->publisher_notes = $Note;
         $balance->save();
     }

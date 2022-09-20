@@ -575,13 +575,13 @@ $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
         }
     }
 
-    function SaveNotes(AccountID){
+    function SaveNotes(Year, Month, AccountID){
         var Notes = document.getElementById("PublisherNotes").value;
         $.ajax({
             type: "POST",
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             url: "{{ route('admin.balances.SaveNotes') }}",
-            data: {'AccountID':AccountID,'notes':Notes},
+            data: {'AccountID':AccountID,'notes':Notes,'year':Year,'month':Month},
             success: function(response){
                 alert("Note Saved!");
                 location.reload();

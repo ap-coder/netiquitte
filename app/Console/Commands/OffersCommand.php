@@ -47,7 +47,7 @@ class OffersCommand extends Command
             ->withBody(json_encode([
                 'search_terms' => [['search_type'=>'name', 'value'=>'']],
             ]), 'json')
-            ->post('https://api.eflow.team/v1/networks/offerstable?relationship=ruleset&relationship=tracking_domain&relationship=account_manager&relationship=sales_manager');
+            ->post('https://api.eflow.team/v1/networks/offerstable?relationship=ruleset&relationship=tracking_domain&relationship=account_manager&relationship=sales_manager&page=1&page_size=100000');
 
             $results = $response->json();
 
@@ -64,6 +64,22 @@ class OffersCommand extends Command
                 ->get('https://api.eflow.team/v1/networks/offers/'.$row['network_offer_id']);
 
                 $singleOffer = $response2->object();
+
+                if($row['revenue_amount']==0 && $row['revenue_percentage']==0){
+                    $revenue_amount = 0.00;
+                }else if($row['revenue_amount']==0 && $row['revenue_percentage']>0){
+                    $revenue_amount = $row['revenue_percentage'];
+                }else{
+                    $revenue_amount = $row['revenue_amount'];
+                }
+
+                if($row['payout_amount']==0 && $row['payout_percentage']==0){
+                    $payout_amount = 0.00;
+                }else if($row['payout_amount']==0 && $row['payout_percentage']>0){
+                    $payout_amount = $row['payout_percentage'];
+                }else{
+                    $payout_amount = $row['payout_amount'];
+                }
 
                 $offer = Offer::updateOrCreate(
                     ['network_offer' => $row['network_offer_id']],
@@ -85,8 +101,8 @@ class OffersCommand extends Command
                         'destination_url'               => $row['destination_url'],
                         'today_clicks'                  => $row['today_clicks'],
                         'optimized_thumbnail_url'       => $row['optimized_thumbnail_url'],
-                        'revenue_amount'                => $row['revenue_amount'],
-                        'payout_amount'                 => $row['payout_amount'],
+                        'revenue_amount'                => $revenue_amount,
+                        'payout_amount'                 => $payout_amount,
                         'today_revenue_amount'          => $row['today_revenue_amount'],
                         'today_payout_amount'           => $row['today_payout_amount'],
                         'payout_type'                   => $row['payout_type'],
@@ -94,7 +110,7 @@ class OffersCommand extends Command
                         'preview_url'                  	=> $singleOffer->preview_url,
                         'description'                  	=> $singleOffer->html_description,
                         'countries'                  	=> $Countries,
-                        'source'                  	    => 'Everflow',
+                        'source'                  	    => $row['network_advertiser_name'],
                     ]
                 );
             }
