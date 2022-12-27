@@ -215,7 +215,7 @@ class EverflowApiController extends Controller
                 'search_terms' => [['search_type'=>'name', 'value'=>'']],
                 // 'filters' => array('account_status'=>'active'),
             ]), 'json')
-            ->post('https://api.eflow.team/v1/networks/offerstable?relationship=ruleset&relationship=tracking_domain&relationship=account_manager&relationship=sales_manager&page=1&page_size=1000');
+            ->post('https://api.eflow.team/v1/networks/offerstable?relationship=ruleset&relationship=tracking_domain&relationship=account_manager&relationship=sales_manager&page=1&page_size=100000');
 
             $results = $response->json();
 
@@ -233,19 +233,19 @@ class EverflowApiController extends Controller
 
                 $singleOffer = $response2->object();
 
-                if ($row['revenue_amount'] == 0 && $row['revenue_percentage'] == 0) {
+                if($row['revenue_amount']==0 && $row['revenue_percentage']==0){
                     $revenue_amount = 0.00;
-                } elseif ($row['revenue_amount'] == 0 && $row['revenue_percentage'] > 0) {
+                }else if($row['revenue_amount']==0 && $row['revenue_percentage']>0){
                     $revenue_amount = $row['revenue_percentage'];
-                } else {
+                }else{
                     $revenue_amount = $row['revenue_amount'];
                 }
 
-                if ($row['payout_amount'] == 0 && $row['payout_percentage'] == 0) {
+                if($row['payout_amount']==0 && $row['payout_percentage']==0){
                     $payout_amount = 0.00;
-                } elseif ($row['payout_amount'] == 0 && $row['payout_percentage'] > 0) {
+                }else if($row['payout_amount']==0 && $row['payout_percentage']>0){
                     $payout_amount = $row['payout_percentage'];
-                } else {
+                }else{
                     $payout_amount = $row['payout_amount'];
                 }
 
