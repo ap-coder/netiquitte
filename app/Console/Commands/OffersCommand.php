@@ -107,7 +107,7 @@ class OffersCommand extends Command
                         'today_payout_amount'           => $row['today_payout_amount'],
                         'payout_type'                   => $row['payout_type'],
                         'revenue_type'                  => $row['revenue_type'],
-                        'preview_url'                  	=> $singleOffer->preview_url,
+                        'preview_url'                  	=> $singleOffer->preview_url ?? '',
                         'description'                  	=> $singleOffer->html_description,
                         'countries'                  	=> $Countries,
                         'source'                  	    => $row['network_advertiser_name'],

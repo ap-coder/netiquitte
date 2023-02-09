@@ -51,7 +51,7 @@ class AffiliateController extends Controller
             });
 
             $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
+                return $row->network_affiliateid ? $row->network_affiliateid : '';
             });
             // $table->addColumn('account_status_name', function ($row) {
             //     return $row->account_status ? $row->account_status : '';

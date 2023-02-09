@@ -47,7 +47,7 @@ class OfferController extends Controller
             });
 
             $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
+                return $row->network_offer ? $row->network_offer : '';
             });
             $table->editColumn('name', function ($row) {
                 return $row->name ? $row->name : '';

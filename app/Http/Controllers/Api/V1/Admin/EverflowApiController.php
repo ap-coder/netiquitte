@@ -275,7 +275,7 @@ class EverflowApiController extends Controller
                         'today_payout_amount'           => $row['today_payout_amount'],
                         'payout_type'                   => $row['payout_type'],
                         'revenue_type'                  => $row['revenue_type'],
-                        'preview_url'                  	=> $singleOffer->preview_url,
+                        'preview_url'                  	=> $singleOffer->preview_url ?? '',
                         'description'                  	=> $singleOffer->html_description,
                         'countries'                  	=> $Countries,
                         'source'                  	    => $row['network_advertiser_name'],
@@ -376,13 +376,17 @@ class EverflowApiController extends Controller
                     $Payout = $value->reporting->payout;
                     $Profit = $value->reporting->profit;
 
+                    $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
+                    $OfferData=Offer::where('network_offer',$OfferID)->first();
+                    
+
                     $BalanceContainer = new BalanceContainer;
                     $BalanceContainer->time_year = $Year;
                     $BalanceContainer->time_month = $MonthName;
                     $BalanceContainer->affiliate = $Affiliate;
-                    $BalanceContainer->affiliate_id = $AffiliateID;
+                    $BalanceContainer->affiliate_id = $AffiliateData->id;
                     $BalanceContainer->offer = $Offer;
-                    $BalanceContainer->offer_id = $OfferID;
+                    $BalanceContainer->offer_id = $OfferData->id;
                     $BalanceContainer->revenue = $Revenue;
                     $BalanceContainer->payout = $Payout;
                     $BalanceContainer->profit = $Profit;
@@ -397,9 +401,9 @@ class EverflowApiController extends Controller
                     $Month = $container->time_month;
                     $MonthlyStatus = $container->monthly_status;
 
-                    $revenue = BalanceContainer::where('affiliate_id', $AffiliateID)->where('time_month', $Month)->sum('revenue');
-                    $payout = BalanceContainer::where('affiliate_id', $AffiliateID)->where('time_month', $Month)->sum('payout');
-                    $profit = BalanceContainer::where('affiliate_id', $AffiliateID)->where('time_month', $Month)->sum('profit');
+                    $revenue = BalanceContainer::where('affiliate_id', $AffiliateID)->where('time_month', $Month)->where('time_year', $Year)->sum('revenue');
+                    $payout = BalanceContainer::where('affiliate_id', $AffiliateID)->where('time_month', $Month)->where('time_year', $Year)->sum('payout');
+                    $profit = BalanceContainer::where('affiliate_id', $AffiliateID)->where('time_month', $Month)->where('time_year', $Year)->sum('profit');
 
                     $balance = Balance::updateOrCreate(
                         [
@@ -492,11 +496,13 @@ class EverflowApiController extends Controller
                 $Payout = $value->reporting->payout;
                 $Profit = $value->reporting->profit;
 
+                $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
+
                 $BalanceContainer = new BalanceContainer;
                 $BalanceContainer->time_year = date('Y');
                 $BalanceContainer->time_month = $monthName;
                 $BalanceContainer->affiliate = $Affiliate;
-                $BalanceContainer->affiliate_id = $AffiliateID;
+                $BalanceContainer->affiliate_id = $AffiliateData->id;
                 $BalanceContainer->offer = $Offer;
                 $BalanceContainer->offer_id = $OfferID;
                 $BalanceContainer->revenue = $Revenue;
@@ -606,11 +612,13 @@ class EverflowApiController extends Controller
                     $Payout = $value->reporting->payout;
                     $Profit = $value->reporting->profit;
 
+                    $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
+
                     $BalanceContainer = new BalanceContainer;
                     $BalanceContainer->time_year = $Year;
                     $BalanceContainer->time_month = $MonthName;
                     $BalanceContainer->affiliate = $Affiliate;
-                    $BalanceContainer->affiliate_id = $AffiliateID;
+                    $BalanceContainer->affiliate_id = $AffiliateData->id;
                     $BalanceContainer->offer = $Offer;
                     $BalanceContainer->offer_id = $OfferID;
                     $BalanceContainer->revenue = $Revenue;

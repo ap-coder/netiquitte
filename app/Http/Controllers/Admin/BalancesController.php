@@ -208,6 +208,8 @@ class BalancesController extends Controller
 
         $affiliate = Affiliate::where('id', $AffiliateID)->first();
 
+        $networkAffiliateid = $affiliate->network_affiliateid;
+
         $paymentMailLogs = PaymentMailLogs::where('affiliate_id', $AffiliateID)->orderBy('id', 'DESC')->get();
 
         $balance = Balance::where('affiliate_id', $AffiliateID)->where('accounting_year', $Year)->where('accounting_month', $Month)->first();
@@ -216,7 +218,7 @@ class BalancesController extends Controller
         $payout = Balance::where('affiliate_id', $AffiliateID)->where('accounting_year', $Year)->where('accounting_month', $Month)->sum('payout');
         $profit = Balance::where('affiliate_id', $AffiliateID)->where('accounting_year', $Year)->where('accounting_month', $Month)->sum('profit');
 
-        $html = view('admin.balances.partials.balance-model', compact('AffiliateID', 'Year', 'Month', 'balance', 'revenue', 'payout', 'profit', 'total', 'paymentMethod', 'affiliate', 'paymentMailLogs', 'paymentMethodTypes'))->render();
+        $html = view('admin.balances.partials.balance-model', compact('AffiliateID', 'Year', 'Month', 'balance', 'revenue', 'payout', 'profit', 'total', 'paymentMethod', 'affiliate', 'paymentMailLogs', 'paymentMethodTypes','networkAffiliateid'))->render();
 
         echo $html;
     }

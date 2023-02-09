@@ -288,7 +288,7 @@
 </table>
 
 {{-- <p style="text-align: center;">If you no longer wish to receive our emails, please <a href="{{ route('unsubscribe') }}?id={ID}&amp;type={AcctType}">unsubscribe here</a><br /> --}}
-    <p style="text-align: center;"> 4327 S Hwy 27, Suite 423, Clermont Florida, USA, 34711, USA<br />
+    <p style="text-align: center;"> 4327 S Hwy 27, Suite 432, Clermont Florida, USA, 34711, USA<br />
 Email us&nbsp;<a href="mailto:info@netiquetteads.com">info@netiquetteads.com</a></p>
 
 </textarea> 

@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use App\Models\Balance;
 use App\Models\BalanceContainer;
+use App\Models\Affiliate;
+use App\Models\Offer;
 use DateInterval;
 use DatePeriod;
 use DateTime;
@@ -45,6 +47,7 @@ class BalancesCommand extends Command
     public function handle()
     {
         try {
+            
             $fromDate = date('Y-m-d', strtotime(date('Y-01-01')));
             $toDate = date('Y-m-d', strtotime(date('Y-m-d')));
             $begin = new DateTime($fromDate);
@@ -88,13 +91,17 @@ class BalancesCommand extends Command
                     $Payout = $value->reporting->payout;
                     $Profit = $value->reporting->profit;
 
+                    $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
+                    $OfferData=Offer::where('network_offer',$OfferID)->first();
+                    
+
                     $BalanceContainer = new BalanceContainer;
                     $BalanceContainer->time_year = $Year;
                     $BalanceContainer->time_month = $MonthName;
                     $BalanceContainer->affiliate = $Affiliate;
-                    $BalanceContainer->affiliate_id = $AffiliateID;
+                    $BalanceContainer->affiliate_id = $AffiliateData->id;
                     $BalanceContainer->offer = $Offer;
-                    $BalanceContainer->offer_id = $OfferID;
+                    $BalanceContainer->offer_id = $OfferData->id;
                     $BalanceContainer->revenue = $Revenue;
                     $BalanceContainer->payout = $Payout;
                     $BalanceContainer->profit = $Profit;
