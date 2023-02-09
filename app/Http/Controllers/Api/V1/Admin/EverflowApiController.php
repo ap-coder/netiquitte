@@ -376,9 +376,8 @@ class EverflowApiController extends Controller
                     $Payout = $value->reporting->payout;
                     $Profit = $value->reporting->profit;
 
-                    $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
-                    $OfferData=Offer::where('network_offer',$OfferID)->first();
-                    
+                    $AffiliateData = Affiliate::where('network_affiliateid', $AffiliateID)->first();
+                    $OfferData = Offer::where('network_offer', $OfferID)->first();
 
                     $BalanceContainer = new BalanceContainer;
                     $BalanceContainer->time_year = $Year;
@@ -496,7 +495,7 @@ class EverflowApiController extends Controller
                 $Payout = $value->reporting->payout;
                 $Profit = $value->reporting->profit;
 
-                $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
+                $AffiliateData = Affiliate::where('network_affiliateid', $AffiliateID)->first();
 
                 $BalanceContainer = new BalanceContainer;
                 $BalanceContainer->time_year = date('Y');
@@ -612,7 +611,7 @@ class EverflowApiController extends Controller
                     $Payout = $value->reporting->payout;
                     $Profit = $value->reporting->profit;
 
-                    $AffiliateData=Affiliate::where('network_affiliateid',$AffiliateID)->first();
+                    $AffiliateData = Affiliate::where('network_affiliateid', $AffiliateID)->first();
 
                     $BalanceContainer = new BalanceContainer;
                     $BalanceContainer->time_year = $Year;

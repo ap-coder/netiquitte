@@ -25,9 +25,9 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('sync:everflow')->daily();
-        $schedule->command('sync:advertisers')->hourly();//->everyThirtyMinutes();
-        $schedule->command('sync:affiliates')->hourly();//->everyThirtyMinutes();
-        $schedule->command('sync:offers')->hourly();//->everyThirtyMinutes();
+        $schedule->command('sync:advertisers')->hourly(); //->everyThirtyMinutes();
+        $schedule->command('sync:affiliates')->hourly(); //->everyThirtyMinutes();
+        $schedule->command('sync:offers')->hourly(); //->everyThirtyMinutes();
         $schedule->command('sync:balances')->hourly();
 
         $schedule->command('send:emails')->everyMinute();
