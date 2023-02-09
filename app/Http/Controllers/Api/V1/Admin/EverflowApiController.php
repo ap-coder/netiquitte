@@ -233,19 +233,19 @@ class EverflowApiController extends Controller
 
                 $singleOffer = $response2->object();
 
-                if($row['revenue_amount']==0 && $row['revenue_percentage']==0){
+                if ($row['revenue_amount'] == 0 && $row['revenue_percentage'] == 0) {
                     $revenue_amount = 0.00;
-                }else if($row['revenue_amount']==0 && $row['revenue_percentage']>0){
+                } elseif ($row['revenue_amount'] == 0 && $row['revenue_percentage'] > 0) {
                     $revenue_amount = $row['revenue_percentage'];
-                }else{
+                } else {
                     $revenue_amount = $row['revenue_amount'];
                 }
 
-                if($row['payout_amount']==0 && $row['payout_percentage']==0){
+                if ($row['payout_amount'] == 0 && $row['payout_percentage'] == 0) {
                     $payout_amount = 0.00;
-                }else if($row['payout_amount']==0 && $row['payout_percentage']>0){
+                } elseif ($row['payout_amount'] == 0 && $row['payout_percentage'] > 0) {
                     $payout_amount = $row['payout_percentage'];
-                }else{
+                } else {
                     $payout_amount = $row['payout_amount'];
                 }
 
